@@ -15,6 +15,12 @@ A Web Components IDE built with Stencil.
   └-www                   - the output directory
 ```
 
+## Installing Dependencies
+```bash
+npm install
+```
+
+
 ## Running Development Server
 ```bash
 npm start
