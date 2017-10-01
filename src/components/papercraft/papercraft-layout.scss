@@ -1,0 +1,11 @@
+@import 'papercraft-vars';
+
+papercraft-layout {
+  display: block;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  z-index: 0;
+  margin: ( $papercraft-header-height + 16px ) 0 0 0;
+}
