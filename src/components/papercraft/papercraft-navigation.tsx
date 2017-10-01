@@ -36,20 +36,17 @@ export class PapercraftNavigation {
     }
   }
 
-  render() {
-    return (
-      <div id="wrapper">
-        <div id="nav" class={this.navState}>
-          hello
-        </div>
-        <div id="header">
-          <papercraft-icon-button icon="menu" onClick={this.showNav.bind(this)}/>
-        </div>
-        <h2>{this.title}</h2>
-        <div id="toolbar">
-          <slot name="toolbar"/>
-        </div>
+  render = () =>
+    <div>
+      <div id="nav" class={this.navState}>
+        hello
       </div>
-    );
-  }
+      <div id="header">
+        <papercraft-icon-button icon="menu" onSelect={this.showNav} denyTabFocus={this.navState === NavState.ShowNav} />
+      </div>
+      <h2>{this.title}</h2>
+      <div id="toolbar">
+        <slot name="toolbar"/>
+      </div>
+    </div>;
 }

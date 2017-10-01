@@ -1,10 +1,10 @@
-@import 'papercraft-vars';
+@import 'papercraft';
 
+// animations for showing and hiding the side nav
 @keyframes show-nav {
   from { margin-left: calc( -50px - 100% ); }
   to { margin-left: -50px; }
 }
-
 @keyframes hide-nav {
   from { margin-left: -50px; }
   to { margin-left: calc( -50px - 100% ); }
@@ -16,7 +16,8 @@ papercraft-navigation {
   -webkit-font-smoothing: antialiased;
   color: $papercraft-header-color;
 
-  #wrapper {
+  // the container div
+  > div:first-of-type {
     display: block;
     position: absolute;
     height: 100%;
@@ -25,6 +26,7 @@ papercraft-navigation {
     margin-left: 50px;
   }
 
+  // the side nav
   #nav {
     float: left;
     display: block;
@@ -34,24 +36,34 @@ papercraft-navigation {
     height: 100%;
     z-index: 200;
     margin-left: calc( -50px - 100% );
-    background-color: #ccc;
+    background-color: $papercraft-menu-background-color;
+    color: $papercraft-menu-color;
     box-shadow: 0 2px 5px rgba(0,0,0,.26);
+
+    // trigger animation on class
+    &.show-nav {
+      animation-duration: 0.35s;
+      animation-name: show-nav;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    // trigger animation on class
+    &.hide-nav {
+      animation-duration: 0.5s;
+      animation-name: hide-nav;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    // force the side nav to display on large screens
+    @include window(large) {
+      margin-left: -50px;
+      animation-name: none !important;
+    }
   }
 
-  #nav.show-nav {
-    animation-duration: 0.35s;
-    animation-name: show-nav;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-
-  #nav.hide-nav {
-    animation-duration: 0.5s;
-    animation-name: hide-nav;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-
+  // the background bar and container for the hamburger button
   #header {
     display: block;
     position: absolute;
@@ -62,22 +74,20 @@ papercraft-navigation {
     background-color: $papercraft-header-background-color;
     padding: 0 22px 0 0;
     box-shadow: 0 2px 5px rgba(0,0,0,.26);
+
+    [icon=menu] {
+      display: none;
+      float: left;
+      margin-top: (($papercraft-header-height - 24px)/2);
+      left: 20px;
+      position: fixed;
+      @include window(small) {
+        display: inline-block;
+      }
+    }
   }
 
-  [slot] {
-    display: inline-block;
-    float: left;
-    margin-top: (($papercraft-header-height - 24px)/2);
-  }
-
-  [icon=menu] {
-    display: inline-block;
-    float: left;
-    margin-top: (($papercraft-header-height - 24px)/2);
-    left: 20px;
-    position: fixed;
-  }
-
+  // the title of the application
   h2 {
     color: $papercraft-header-color;
     display: block;
@@ -88,8 +98,41 @@ papercraft-navigation {
     position: relative;
   }
 
+  // the right-justified tool bar -- these are the settings for xsmall
   #toolbar {
-    right: 20px;
     position: fixed;
+    top: 0;
+    right: 0;
+    width: 52px;
+    padding: 0 0 (($papercraft-header-height - 24px)/2) 20px;
+    height: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    background-color: $papercraft-menu-background-color;
+    color: $papercraft-menu-color;
+
+    // the individual buttons and elements
+    [slot] {
+      display: inline-block;
+      float: left;
+      margin-top: (($papercraft-header-height - 24px)/2);
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    // on small or larger, we put the buttons up top
+    @include window(small) {
+      right: 20px;
+      width: auto;
+      padding: 0;
+      background-color: none;
+      box-shadow: none;
+      background-color: $papercraft-header-background-color;
+      color: $papercraft-header-color;
+
+      [slot] {
+        margin-top: (($papercraft-header-height - 24px)/2);
+      }
+    }
   }
 }

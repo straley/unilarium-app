@@ -1,0 +1,19 @@
+@import '../../site.scss';
+
+// default vars
+$papercraft-header-height: 64px !default;
+$papercraft-header-background-color: #666 !default;
+$papercraft-header-color: #fff !default;
+$papercraft-header-font-size: 18px !default;
+$papercraft-menu-background-color: #eee !default;
+$papercraft-menu-color: #000 !default;
+
+// material breakpoints from https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
+@mixin window($class) {
+  @if $class == xsmall { @media (max-width: 599px) { @content; } }
+  @else if $class == small { @media (min-width: 600px) { @content; } }
+  @else if $class == medium { @media (min-width: 960px) { @content; } }
+  @else if $class == large { @media (min-width: 1280px) { @content; } }
+  @else if $class == xlarge { @media (min-width: 1920px) { @content; } }
+  @else { @warn "invalid breakpoint"; }
+}

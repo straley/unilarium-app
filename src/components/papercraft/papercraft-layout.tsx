@@ -1,43 +1,27 @@
 import { Component, Prop, State, Listen } from '@stencil/core';
 
-enum NavState {
-  Default = "",
-  ShowNav = "show-nav",
-  HideNav = "hide-nav"
-}
-
 @Component({
   tag: 'papercraft-layout',
   styleUrl: 'papercraft-layout.scss'
 })
 export class PapercraftLayout {
   @Prop() class?: string;
-  @State() navState: NavState;
+  @State() enableOutlines: boolean;
 
-  @Listen('body:keydown.escape')
-  handleEscape = () => {
-    this.hideNav();
+  // if the user used the tab key, turn on accessibility outlines
+  @Listen('body:keydown.tab')
+  _enableOutline = () => {
+    this.enableOutlines = true;
   }
 
-  componentWillLoad() {
-    this.navState = NavState.Default;
+  // if they click, turn off the outlines
+  @Listen('body:click')
+  _disableOutline = () => {
+    this.enableOutlines = false;
   }
 
-  showNav = () => {
-    if (this.navState === NavState.Default || this.navState === NavState.HideNav) {
-      this.navState = NavState.ShowNav;
-    }
-  }
-
-  hideNav = () => {
-    if (this.navState === NavState.ShowNav) {
-      this.navState = NavState.HideNav;
-    }
-  }
-
-  render() {
-    return (
+  render = () =>
+    <div class={this.enableOutlines ? "" : "disable-outlines"}>
       <slot/>
-    );
-  }
+    </div>;
 }
