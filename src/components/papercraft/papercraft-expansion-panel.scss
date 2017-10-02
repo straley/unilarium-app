@@ -1,0 +1,131 @@
+@import 'papercraft';
+
+// animations for opening and closing the panel
+@keyframes show-panel {
+  from { margin-top: 0; margin-bottom: 0; }
+  to { margin-top: 16px; margin-bottom: 16px; }
+}
+@keyframes hide-panel {
+  from { margin-top: 16px; margin-bottom: 16px; }
+  to { margin-top: 0; margin-bottom: 0; }
+}
+// don't add top margin on first
+@keyframes show-panel-first {
+  from { margin-bottom: 0; }
+  to { margin-bottom: 16px; }
+}
+@keyframes hide-panel-first {
+  from { margin-bottom: 16px; }
+  to { margin-bottom: 0; }
+}
+// don't add bottom margin on last
+@keyframes show-panel-last {
+  from { margin-top: 0; }
+  to { margin-top: 16px; }
+}
+@keyframes hide-panel-last {
+  from { margin-top: 16px; }
+  to { margin-top: 0; }
+}
+
+papercraft-expansion-panel {
+  // the main div
+  & > div:first-of-type {
+    display: block;
+    position: relative;
+    height: 48px;
+    margin: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.26);
+    overflow: hidden;
+
+    animation-duration: 0.35s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    &.show-panel {
+      height: auto;
+      animation-name: show-panel;
+    }
+
+    &.hide-panel {
+      height: 48px;
+      animation-name: hide-panel;
+    }
+  }
+
+  // the persistent texts
+  .header {
+    display: block;
+    height: 48px;
+    margin: 0 0 24px 24px;
+
+    .label {
+      position: relative;
+      float: left;
+      width: $papercraft-expansion-panel-label-width;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .primary {
+      position: relative;
+      display: block;
+      font-size: 15px;
+      margin: 2px 0 2px 0;
+      color: rgb(0.13*255, 0.13*255, 0.13*255);
+    }
+
+    .secondary {
+      position: relative;
+      display: block;
+      font-size: 12px;
+      margin: 2px 0 2px 0;
+      color: rgb(0.46*255, 0.46*255, 0.46*255);
+    }
+
+    .value {
+      position: relative;
+      display: block;
+      font-size: 15px;
+      color: rgb(0.46*255, 0.46*255, 0.46*255);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    papercraft-icon-button {
+      position: absolute;
+      right: 24px;
+    }
+  }
+
+  .contents {
+    margin-bottom: 16px;
+  }
+}
+
+// don't add top margin on first
+papercraft-expansion-panel:first-of-type {
+  & > div:first-of-type {
+    &.show-panel {
+      animation-name: show-panel-first;
+    }
+    &.hide-panel {
+      animation-name: hide-panel-first;
+    }
+  }
+}
+
+// don't add bottom margin on last
+papercraft-expansion-panel:last-of-type {
+  & > div:first-of-type {
+    &.show-panel {
+      animation-name: show-panel-last;
+    }
+    &.hide-panel {
+      animation-name: hide-panel-last;
+    }
+  }
+}

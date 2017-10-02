@@ -11,6 +11,7 @@
 }
 
 papercraft-layout {
+  background-color: $papercraft-contents-background-color;
   display: block;
   position: fixed;
   height: 100%;
@@ -20,9 +21,7 @@ papercraft-layout {
   padding: ( $papercraft-header-height + 16px ) 0 0 0;
   // padding: 0;
 
-  text-rendering: optimizeLegibility;
   font-size: $papercraft-header-font-size;
-  -webkit-font-smoothing: antialiased;
   color: $papercraft-header-color;
 
   // the container div
@@ -51,8 +50,8 @@ papercraft-layout {
     height: 100%;
     z-index: 200;
     margin-left: calc( -50px - 100% );
-    background-color: $papercraft-menu-background-color;
-    color: $papercraft-menu-color;
+    background-color: $papercraft-nav-background-color;
+    color: $papercraft-nav-color;
     box-shadow: 0 2px 5px rgba(0,0,0,.26);
 
     // trigger animation on class
@@ -108,17 +107,15 @@ papercraft-layout {
     display: block;
     float: left;
     margin: (($papercraft-header-height - $papercraft-header-font-size)/2) 20px 0 22px;
-    font-family: 'Roboto', sans-serif;
     font-weight: normal;
     position: relative;
   }
 
   #contents {
-    color: #000; //$papercraft-header-color;
+    color: $papercraft-contents-color;
     font-weight: normal;
     display: block;
     margin: ($papercraft-header-height) 72px 0 0;
-    font-family: 'Roboto', sans-serif;
     position: relative;
     left: 22px;
 
@@ -142,8 +139,8 @@ papercraft-layout {
     padding: 0 0 (($papercraft-header-height - 24px)/2) 20px;
     height: auto;
     box-shadow: 0 2px 5px rgba(0,0,0,.26);
-    background-color: $papercraft-menu-background-color;
-    color: $papercraft-menu-color;
+    background-color: $papercraft-nav-background-color;
+    color: $papercraft-nav-color;
 
     // the individual buttons and elements
     [slot] {

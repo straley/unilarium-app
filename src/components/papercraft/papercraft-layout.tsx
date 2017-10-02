@@ -54,7 +54,7 @@ export class PapercraftLayout {
   render = () => (
     <div class={this.enableOutlines ? "" : "disable-outlines"}>
       <div id="nav" class={this.navState}>
-        hello
+        <slot name="nav"/>
       </div>
       <div id="header">
         <papercraft-icon-button icon="menu" onSelect={this.showNav} denyTabFocus={this.navState === NavState.ShowNav} />

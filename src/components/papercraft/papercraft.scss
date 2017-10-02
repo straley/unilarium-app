@@ -1,12 +1,23 @@
 @import '../../site.scss';
 
+// main settings
+* {
+  font-family: 'Roboto', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
 // default vars
 $papercraft-header-height: 64px !default;
 $papercraft-header-background-color: #666 !default;
 $papercraft-header-color: #fff !default;
 $papercraft-header-font-size: 18px !default;
-$papercraft-menu-background-color: #eee !default;
-$papercraft-menu-color: #000 !default;
+$papercraft-nav-background-color: #f6f6f6 !default;
+$papercraft-nav-color: #000 !default;
+$papercraft-contents-background-color: #fafafa !default;
+$papercraft-contents-color: #000 !default;
+$papercraft-expansion-panel-label-width: 70px !default;
+
 
 // material breakpoints from https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
 @mixin window($class) {
