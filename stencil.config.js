@@ -2,7 +2,7 @@
 exports.config = {
   namespace: 'App',
   bundles: [
-    { components: ['papercraft-layout', 'papercraft-navigation', 'papercraft-icon', 'papercraft-icon-button', 'papercraft-material-icon'] },
+    { components: ['papercraft-layout', 'papercraft-icon', 'papercraft-icon-button', 'papercraft-material-icon'] },
     { components: ['unilarium-app'] },
   ],
   collections: [

@@ -8,5 +8,5 @@ export class PapercraftIcon {
   @Prop() class?: string;
   @Prop() src?: string;
 
-  render = () => <slot></slot>;
+  render = () => (<slot/>);
 }

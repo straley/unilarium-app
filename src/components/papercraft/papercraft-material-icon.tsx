@@ -8,5 +8,7 @@ export class PapercraftMaterialIcon {
   @Prop() class: string;
   @Prop() icon: string;
 
-  render = () => <papercraft-icon><i class="material-icons">{this.icon}</i></papercraft-icon>;
+  render = () => (
+    <papercraft-icon><i class="material-icons">{this.icon}</i></papercraft-icon>
+  );
 }

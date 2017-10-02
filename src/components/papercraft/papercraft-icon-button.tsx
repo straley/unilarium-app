@@ -18,7 +18,7 @@ export class PapercraftIconButton {
   _handleClick = () => (typeof this.onSelect === "function") && this.onSelect();
 
   render() {
-    const contents = this.icon ? <papercraft-material-icon icon={this.icon}><slot></slot></papercraft-material-icon> : <slot></slot>;
+    const contents = this.icon ? <papercraft-material-icon icon={this.icon}><slot></slot></papercraft-material-icon> : <slot/>;
 
     // it doesn't appear that tabindex can be set with a {variable}, so we need to do this conditional
     return this.denyTabFocus ? <div role="button">{contents}</div> : <div role="button" tabindex="0">{contents}</div>;

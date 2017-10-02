@@ -1,5 +1,11 @@
 import { Component, Prop, State, Listen } from '@stencil/core';
 
+enum NavState {
+  Default = "",
+  ShowNav = "show-nav",
+  HideNav = "hide-nav"
+}
+
 @Component({
   tag: 'papercraft-layout',
   styleUrl: 'papercraft-layout.scss'
@@ -7,6 +13,14 @@ import { Component, Prop, State, Listen } from '@stencil/core';
 export class PapercraftLayout {
   @Prop() class?: string;
   @State() enableOutlines: boolean;
+  @Prop() title?: string;
+  @State() navState: NavState;
+
+  // close the menu on escape
+  @Listen('body:keydown.escape')
+  handleEscape = () => {
+    this.hideNav();
+  }
 
   // if the user used the tab key, turn on accessibility outlines
   @Listen('body:keydown.tab')
@@ -20,8 +34,38 @@ export class PapercraftLayout {
     this.enableOutlines = false;
   }
 
-  render = () =>
+  // set the default navState
+  componentWillLoad() {
+    this.navState = NavState.Default;
+  }
+
+  showNav = () => {
+    if (this.navState === NavState.Default || this.navState === NavState.HideNav) {
+      this.navState = NavState.ShowNav;
+    }
+  }
+
+  hideNav = () => {
+    if (this.navState === NavState.ShowNav) {
+      this.navState = NavState.HideNav;
+    }
+  }
+
+  render = () => (
     <div class={this.enableOutlines ? "" : "disable-outlines"}>
-      <slot/>
-    </div>;
+      <div id="nav" class={this.navState}>
+        hello
+      </div>
+      <div id="header">
+        <papercraft-icon-button icon="menu" onSelect={this.showNav} denyTabFocus={this.navState === NavState.ShowNav} />
+      </div>
+      <h2>{this.title}</h2>
+      <div id="toolbar">
+        <slot name="toolbar"/>
+      </div>
+      <div id="contents">
+        <slot/>
+      </div>
+    </div>
+  );
 }
