@@ -13,7 +13,7 @@ enum NavState {
 export class PapercraftLayout {
   @Prop() class?: string;
   @State() enableOutlines: boolean;
-  @Prop() title?: string;
+  @Prop() caption?: string;
   @State() navState: NavState;
 
   // close the menu on escape
@@ -53,13 +53,14 @@ export class PapercraftLayout {
 
   render = () => (
     <div class={this.enableOutlines ? "" : "disable-outlines"}>
+      <div id="modal-mask" class={this.navState}/>
       <div id="nav" class={this.navState}>
         <slot name="nav"/>
       </div>
       <div id="header">
         <papercraft-icon-button icon="menu" onSelect={this.showNav} denyTabFocus={this.navState === NavState.ShowNav} />
+        <h2>{this.caption}</h2>
       </div>
-      <h2>{this.title}</h2>
       <div id="toolbar">
         <slot name="toolbar"/>
       </div>
