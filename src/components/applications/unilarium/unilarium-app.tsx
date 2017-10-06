@@ -11,25 +11,17 @@ export class App {
       <papercraft-icon-button slot="toolbar" icon="account_circle"/>
       <papercraft-icon-button slot="toolbar" icon="code"/>
       <papercraft-icon-button slot="toolbar" icon="grade"/>
-      <papercraft-expansion-panel slot="nav" primary="Project" secondary="1,240 files" value="unilarium-app">
-        <div>BLAH</div> <div>BLAH</div>
+      <papercraft-expansion-panel slot="nav" hideHeader class="nav-header">
+        <unilarium-brand class="unilarium-brand" color="#fff"/>
       </papercraft-expansion-panel>
-      <papercraft-expansion-panel slot="nav" primary="Project" value="another-app">
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div>
-      </papercraft-expansion-panel>
-      <papercraft-expansion-panel slot="nav" primary="Project" secondary="41 files" value="freds-app">
-        <div>BLAH</div> <div>BLAH</div>
-      </papercraft-expansion-panel>
-      <papercraft-expansion-panel slot="nav" primary="Project" value="nobodys-app">
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div> <div>BLAH</div>
-        <div>BLAH</div> <div>BLAH</div>
+      <papercraft-expansion-panel slot="nav" primary="Hello" value="there" openable>X</papercraft-expansion-panel>
+      <papercraft-expansion-panel slot="nav" primary="Project" value="another-app" openable>
+        <papercraft-tree-folder open ready>
+          mainfolder
+          <papercraft-tree-folder onOpen={()=>{console.log(this);}}/>
+          <papercraft-tree-file hidden>.gitignore</papercraft-tree-file>
+          <papercraft-tree-file>something.js</papercraft-tree-file>
+        </papercraft-tree-folder>
       </papercraft-expansion-panel>
 
       <div>TEST</div>

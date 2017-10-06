@@ -72,7 +72,6 @@ papercraft-layout {
     @include size-property(margin-right, 52px+$xsmall-margin, 52px+$small-margin);
     background-color: $papercraft-nav-background-color;
     color: $papercraft-nav-color;
-    @include depth-shadow(4);
 
     // trigger animation on class
     &.show-nav {
@@ -220,5 +219,10 @@ papercraft-layout {
       background-color: #eee;
     }
 
+  }
+
+  .nav-filler {
+    background-color: $papercraft-header-background-color;
+    height: 100%;
   }
 }

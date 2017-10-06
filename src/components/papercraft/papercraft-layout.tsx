@@ -1,4 +1,4 @@
-import { Component, Prop, State, Listen } from '@stencil/core';
+import { Component, Prop, State, Listen, Element } from '@stencil/core';
 
 enum NavState {
   Default = "",
@@ -15,6 +15,8 @@ export class PapercraftLayout {
   @State() enableOutlines: boolean;
   @Prop() caption?: string;
   @State() navState: NavState;
+
+  @Element() element: HTMLElement;
 
   // close the menu on escape
   @Listen('body:keydown.escape')
@@ -51,11 +53,15 @@ export class PapercraftLayout {
     }
   }
 
+
+
+
   render = () => (
     <div class={this.enableOutlines ? "" : "disable-outlines"}>
       <div id="modal-mask" class={this.navState}/>
       <div id="nav" class={this.navState}>
         <slot name="nav"/>
+        <papercraft-expansion-panel class="nav-filler" hideHeader/>
       </div>
       <div id="header">
         <papercraft-icon-button icon="menu" onSelect={this.showNav} denyTabFocus={this.navState === NavState.ShowNav} />
