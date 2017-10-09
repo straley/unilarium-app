@@ -33,12 +33,13 @@ papercraft-expansion-panel {
   & > div:first-of-type {
     display: block;
     position: relative;
-    height: 48px;
+    min-height: 48px;
+    height: 0;
     margin: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    background-color: #fff;
+    background-color: #fafafa;
     padding: 10px;
-    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.26);
+    @include depth-shadow(4);
     overflow: hidden;
 
     animation-duration: 0.35s;
@@ -54,6 +55,11 @@ papercraft-expansion-panel {
       height: 48px;
       animation-name: hide-panel;
     }
+  }
+
+  & > div:first-of-type:focus {
+    background-color: #fff;
+    outline: none;
   }
 
   // the persistent texts
