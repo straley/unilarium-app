@@ -220,9 +220,9 @@ papercraft-layout {
     }
 
   }
+}
 
-  .nav-filler {
-    background-color: $papercraft-header-background-color;
-    height: 100%;
-  }
+.nav-filler {
+  background-color: $papercraft-nav-background-color;
+  height: 100%;
 }

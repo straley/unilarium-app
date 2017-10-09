@@ -53,9 +53,6 @@ export class PapercraftLayout {
     }
   }
 
-
-
-
   render = () => (
     <div class={this.enableOutlines ? "" : "disable-outlines"}>
       <div id="modal-mask" class={this.navState}/>
