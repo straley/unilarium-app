@@ -1,9 +1,39 @@
-export const dashToCamel = (dash:string) => dash.replace(/-([a-z])/g, g => (g[1].toUpperCase()));
+export const dashToCamel = (dashed:string) => dashed && dashed.replace(/-([a-z])/g, g => (g[1].toUpperCase()));
 
 // get any override styles assigned to an html element from user style sheets
 export const getAssignedStyles = (element:HTMLElement) => {
+
+  const x = [].slice.call(document.styleSheets || [])
+    .map((sheet:any) => [].slice.call(sheet.rules || []))
+    .reduce((accumulator:any,rule:any) => accumulator.concat(rule), [])
+    .filter((rule:any) => (
+      rule.selectorText &&
+      (
+        [...Array.from(new Set(
+          element.className.split(/\s+/).map((className:string) => `.${className}`)
+        ))].filter(x => new Set(
+          rule.selectorText.split(/\s*,\s*/)
+        ).has(x)).length > 0
+      )
+    ))
+    .map((rule:any) => (
+      [].slice.call(rule.style) || []).map(
+        (property:string) => ({[dashToCamel(property)]: rule.style[property]})
+      )
+    )
+    .reduce((accumulator:any,rule:any) => accumulator.concat(rule), [])
+    .reduce(
+      (accumulator:Object, property:Object) => (
+        {
+        ...accumulator,
+        ...property
+      }), {}
+    );
+
+  console.log("X",x);
+
   // break out element classnames
-  return element.className.split(/\s+/).reduce(
+  const y = element.className.split(/\s+/).reduce(
     (accumulator:Object, className:string) => ({
       ...accumulator,
       ...(
@@ -44,4 +74,7 @@ export const getAssignedStyles = (element:HTMLElement) => {
       )
     }), {}
   );
+
+  console.log("Y", y);
+  return x;
 }
